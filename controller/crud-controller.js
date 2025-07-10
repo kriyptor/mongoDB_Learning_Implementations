@@ -1,15 +1,15 @@
 const { ObjectId } = require("mongodb");
-const {connectToDb} = require(`../db`);
-
+const { getDb } = require(`../db`);
+/* 
   let db;
 
   connectToDb()
     .then((connection) => {
       db = connection;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err)); */
 
-  const getBooksCollection = () => db.collection(`books`);
+  const getBooksCollection = () => getDb().collection(`books`);
 
 
 exports.getAllBooks = async (req, res) => {
@@ -69,7 +69,6 @@ exports.getSingleBook = async (req, res) => {
     res.status(500).json({ message: "Error fetching books" });
   }
 };
-
 
 
 exports.addBook = async (req, res) => {

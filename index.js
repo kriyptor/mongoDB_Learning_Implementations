@@ -3,6 +3,7 @@ const express = require(`express`);
 const { connectToDb } = require(`./db`);
 const { insertBookData } = require(`./bulk-Insertion`);
 const crudRouter = require(`./router/crud-router`);
+const queryRouter = require(`./router/query-router`);
 const { ObjectId } = require(`mongodb`);
 const bodyParser = require("body-parser");
 const cors = require(`cors`);
@@ -23,14 +24,14 @@ app.use(cors())
 /* -----------API Routes--------------- */
 
 app.use(`${process.env.API_BASE_URL}/crud`, crudRouter);
-
+app.use(`${process.env.API_BASE_URL}/query`, queryRouter);
 
 
 /* -------DB Connection------- */
 connectToDb()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`Connected To DB, Sever Started At Port:${PORT}`)
+      console.log(`Connected To DB, Sever Started At Port:${PORT}`) 
     );
     /* insertBookData() */
   })
