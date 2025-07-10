@@ -4,6 +4,7 @@ const { connectToDb } = require(`./db`);
 const { insertBookData } = require(`./bulk-Insertion`);
 const crudRouter = require(`./router/crud-router`);
 const queryRouter = require(`./router/query-router`);
+const aggreRouter = require(`./router/aggre-router`);
 const { ObjectId } = require(`mongodb`);
 const bodyParser = require("body-parser");
 const cors = require(`cors`);
@@ -25,7 +26,7 @@ app.use(cors())
 
 app.use(`${process.env.API_BASE_URL}/crud`, crudRouter);
 app.use(`${process.env.API_BASE_URL}/query`, queryRouter);
-
+app.use(`${process.env.API_BASE_URL}/aggre`, aggreRouter);
 
 /* -------DB Connection------- */
 connectToDb()
